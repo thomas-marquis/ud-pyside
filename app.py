@@ -1,8 +1,18 @@
-import sys
-from PySide2.QtWidgets import QApplication, QLabel
+from PySide2.QtWidgets import QApplication, QPushButton, QWidget
+
+
+class MyApplication(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        btn_hello = QPushButton('Hello !', self)
+        btn_bye = QPushButton('Bye !', self)
+
+        self.resize(500, 500)
+
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    label = QLabel("Hello world !")
-    label.show()
-    sys.exit(app.exec_())
+    app = QApplication()
+    window = MyApplication()
+    window.show()
+    app.exec_()
