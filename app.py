@@ -1,4 +1,4 @@
-from PySide2 import QtWidgets
+from PySide2 import QtWidgets, QtCore
 
 
 class MyApplication(QtWidgets.QWidget):
@@ -7,12 +7,12 @@ class MyApplication(QtWidgets.QWidget):
 
         layout = QtWidgets.QHBoxLayout(self)
 
-        lw_demo = QtWidgets.QListWidget(self)
-        for i in range(0, 10):
-            lw_demo.addItem('nouvel item {}'.format(i))
-            lw_demo.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove)
+        checkbox = QtWidgets.QCheckBox('ceci est une checkbox')
+        checkbox.setCheckState(QtCore.Qt.Checked)
 
-        layout.addWidget(lw_demo)
+        print(checkbox.checkState())
+
+        layout.addWidget(checkbox)
 
         self.resize(500, 500)
 
