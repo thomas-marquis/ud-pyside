@@ -1,19 +1,15 @@
-from PySide2.QtWidgets import QApplication, QPushButton, QWidget, QGridLayout
+from PySide2.QtWidgets import QApplication, QPushButton, QWidget, QHBoxLayout
 
 
 class MyApplication(QWidget):
     def __init__(self):
         super().__init__()
 
-        layout = QGridLayout(self)
+        layout = QHBoxLayout(self)
 
-        button = QPushButton('grand bouton')
-        layout.addWidget(button, 0, 0, 1, 3)
-
-        for i in range(1, 3):
-            for j in range(0, 3):
-                button = QPushButton('{}, {}'.format(i, j))
-                layout.addWidget(button, i, j, 1, 1)
+        for i in range(0, 3):
+            button = QPushButton('btn {}'.format(i))
+            layout.addWidget(button)
 
         self.resize(500, 500)
 
