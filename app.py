@@ -7,15 +7,12 @@ class MyApplication(QtWidgets.QWidget):
 
         layout = QtWidgets.QHBoxLayout(self)
 
-        combo_box = QtWidgets.QComboBox()
-        combo_box.addItem('delamerde')
-        combo_box.addItems(['coucou', 'clic là', 'clic ici plutôt !'])
+        progress = QtWidgets.QProgressBar()
+        progress.setRange(0, 100)
+        progress.setValue(50)
+        progress.setTextVisible(False)
 
-        combo_box.setCurrentIndex(combo_box.count() - 1)
-
-        combo_box.setItemText(2, 'Nouveau text')
-
-        layout.addWidget(combo_box)
+        layout.addWidget(progress)
 
         self.resize(500, 500)
 
