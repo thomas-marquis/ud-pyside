@@ -5,16 +5,14 @@ class MyApplication(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
 
-        hor_layout = QtWidgets.QHBoxLayout(self)
+        layout = QtWidgets.QHBoxLayout(self)
 
-        for j in range(0, 2):
-            vert_layout = QtWidgets.QVBoxLayout(self)
+        lw_demo = QtWidgets.QListWidget(self)
+        for i in range(0, 10):
+            lw_demo.addItem('nouvel item {}'.format(i))
+            lw_demo.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove)
 
-            for i in range(0, 3):
-                button = QtWidgets.QPushButton('btn {}'.format(i))
-                vert_layout.addWidget(button)
-
-            hor_layout.addLayout(vert_layout)
+        layout.addWidget(lw_demo)
 
         self.resize(500, 500)
 
