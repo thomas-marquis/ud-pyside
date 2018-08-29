@@ -7,12 +7,15 @@ class MyApplication(QtWidgets.QWidget):
 
         layout = QtWidgets.QHBoxLayout(self)
 
-        checkbox = QtWidgets.QCheckBox('ceci est une checkbox')
-        checkbox.setCheckState(QtCore.Qt.Checked)
+        combo_box = QtWidgets.QComboBox()
+        combo_box.addItem('delamerde')
+        combo_box.addItems(['coucou', 'clic là', 'clic ici plutôt !'])
 
-        print(checkbox.checkState())
+        combo_box.setCurrentIndex(combo_box.count() - 1)
 
-        layout.addWidget(checkbox)
+        combo_box.setItemText(2, 'Nouveau text')
+
+        layout.addWidget(combo_box)
 
         self.resize(500, 500)
 
