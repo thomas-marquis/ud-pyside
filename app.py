@@ -1,21 +1,26 @@
-from PySide2.QtWidgets import QApplication, QPushButton, QWidget, QHBoxLayout
+from PySide2 import QtWidgets
 
 
-class MyApplication(QWidget):
+class MyApplication(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
 
-        layout = QHBoxLayout(self)
+        hor_layout = QtWidgets.QHBoxLayout(self)
 
-        for i in range(0, 3):
-            button = QPushButton('btn {}'.format(i))
-            layout.addWidget(button)
+        for j in range(0, 2):
+            vert_layout = QtWidgets.QVBoxLayout(self)
+
+            for i in range(0, 3):
+                button = QtWidgets.QPushButton('btn {}'.format(i))
+                vert_layout.addWidget(button)
+
+            hor_layout.addLayout(vert_layout)
 
         self.resize(500, 500)
 
 
 if __name__ == '__main__':
-    app = QApplication()
+    app = QtWidgets.QApplication()
     window = MyApplication()
     window.show()
     app.exec_()
