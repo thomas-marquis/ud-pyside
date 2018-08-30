@@ -1,5 +1,5 @@
 from PySide2 import QtWidgets, QtCore
-
+from functools import partial
 
 class MainFrame(QtWidgets.QWidget):
     def __init__(self):
@@ -9,17 +9,16 @@ class MainFrame(QtWidgets.QWidget):
 
         self._layout = QtWidgets.QVBoxLayout(self)
         button = QtWidgets.QPushButton('Clique ici !')
-        button.clicked.connect(self._on_button_click)
-        button.released.connect(self._on_button_released)
+        button.clicked.connect(partial(self._on_button_click, 'premier bouton'))
+
+        button_2 = QtWidgets.QPushButton('un autre bouton')
+        button_2.clicked.connect(partial(self._on_button_click, 'deuxième bouton'))
 
         self._layout.addWidget(button)
+        self._layout.addWidget(button_2)
 
-    def _on_button_click(self):
-        button = QtWidgets.QPushButton('coucou')
-        self._layout.addWidget(button)
-
-    def _on_button_released(self):
-        print('c\'est bon !')
+    def _on_button_click(self, text):
+        print(text)
 
 
 if __name__ == '__main__':
