@@ -1,16 +1,11 @@
 from PySide2 import QtWidgets, QtCore
 from functools import partial
 
+from custom_ui.calculette import Ui_form_calculatrice
 
-class Calculatrice(QtWidgets.QWidget):
 
-    _BTN_TEXT_PLUS = '+'
-    _BTN_TEXT_MOINS = '-'
-    _BTN_TEXT_FOIS = 'X'
-    _BTN_TEXT_DIVIS = '/'
-    _BTN_TEXT_C = 'C'
-    _BTN_TEXT_EQ = '='
-    _BTN_TEXT_POINT = '.'
+class Calculatrice(Ui_form_calculatrice, QtWidgets.QWidget):
+
 
     def __init__(self):
         super().__init__()
@@ -18,54 +13,17 @@ class Calculatrice(QtWidgets.QWidget):
         self.btns_nb = []
         """:type: list[QtWidgets.QPushButton]"""
 
-        self.setWindowTitle('Ma super caltos')
-
-        self._setup_ui()
+        self.setupUi(self)
+        self._custom_setup_ui()
         self._setupConnection()
 
-    def _setup_ui(self):
-        grid_layout = QtWidgets.QGridLayout(self)
-
-        self.le_operation = QtWidgets.QLineEdit()
-        grid_layout.addWidget(self.le_operation, 0, 0, 1, 4)
-
-        self.le_result = QtWidgets.QLineEdit()
-        grid_layout.addWidget(self.le_result, 1, 0, 1, 4)
-
-        self.btns_nb = []
-        i = 0
-        for j in range(3, 6):
-            for k in range(0, 3):
-                button = QtWidgets.QPushButton('%s' % (i))
-                i += 1
-                self.btns_nb.append(button)
-                grid_layout.addWidget(button, j, k, 1, 1)
-
-        self.btn_point = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_POINT)
-        grid_layout.addWidget(self.btn_point, 6, 2, 1, 1)
-
-        self.btn_plus = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_PLUS)
-        grid_layout.addWidget(self.btn_plus, 5, 3, 1, 1)
-
-        self.btn_moins = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_MOINS)
-        grid_layout.addWidget(self.btn_moins, 4, 3, 1, 1)
-
-        self.btn_fois = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_FOIS)
-        grid_layout.addWidget(self.btn_fois, 3, 3, 1, 1)
-
-        self.btn_divis = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_DIVIS)
-        grid_layout.addWidget(self.btn_divis, 2, 3, 1, 1)
-
-        self.btn_egal = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_EQ)
-        grid_layout.addWidget(self.btn_egal, 6, 3, 1, 1)
-
-        self.btn_c = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_C)
-        grid_layout.addWidget(self.btn_c, 2, 0, 1, 1)
-
-        for i in range(grid_layout.count()):
-            item = grid_layout.itemAt(i).widget()
-            if isinstance(item, QtWidgets.QPushButton):
-                item.setFixedSize(64, 64)
+    def _custom_setup_ui(self):
+        for i in range(self.gridLayout.count()):
+            widget = self.gridLayout.itemAt(i).widget()
+            if isinstance(widget, QtWidgets.QPushButton):
+                widget.setStyleSheet('QPushButton:hover {color: rgb(100, 200, 130);}')
+            if isinstance(widget, QtWidgets.QPushButton) and widget.text().isdigit():
+                self.btns_nb.append(widget)
 
     def _setupConnection(self):
         self.btn_egal.clicked.connect(self._calculOperation)
