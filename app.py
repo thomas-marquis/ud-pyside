@@ -15,7 +15,7 @@ class Calculatrice(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
 
-        self._btns_nb = []
+        self.btns_nb = []
         """:type: list[QtWidgets.QPushButton]"""
 
         self.setWindowTitle('Ma super caltos')
@@ -26,41 +26,41 @@ class Calculatrice(QtWidgets.QWidget):
     def _setup_ui(self):
         grid_layout = QtWidgets.QGridLayout(self)
 
-        self._le_operation = QtWidgets.QLineEdit()
-        grid_layout.addWidget(self._le_operation, 0, 0, 1, 4)
+        self.le_operation = QtWidgets.QLineEdit()
+        grid_layout.addWidget(self.le_operation, 0, 0, 1, 4)
 
-        self._le_result = QtWidgets.QLineEdit()
-        grid_layout.addWidget(self._le_result, 1, 0, 1, 4)
+        self.le_result = QtWidgets.QLineEdit()
+        grid_layout.addWidget(self.le_result, 1, 0, 1, 4)
 
-        self._btns_nb = []
+        self.btns_nb = []
         i = 0
         for j in range(3, 6):
             for k in range(0, 3):
                 button = QtWidgets.QPushButton('%s' % (i))
                 i += 1
-                self._btns_nb.append(button)
+                self.btns_nb.append(button)
                 grid_layout.addWidget(button, j, k, 1, 1)
 
-        self._btn_point = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_POINT)
-        grid_layout.addWidget(self._btn_point, 6, 2, 1, 1)
+        self.btn_point = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_POINT)
+        grid_layout.addWidget(self.btn_point, 6, 2, 1, 1)
 
-        self._btn_plus = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_PLUS)
-        grid_layout.addWidget(self._btn_plus, 5, 3, 1, 1)
+        self.btn_plus = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_PLUS)
+        grid_layout.addWidget(self.btn_plus, 5, 3, 1, 1)
 
-        self._btn_moins = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_MOINS)
-        grid_layout.addWidget(self._btn_moins, 4, 3, 1, 1)
+        self.btn_moins = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_MOINS)
+        grid_layout.addWidget(self.btn_moins, 4, 3, 1, 1)
 
-        self._btn_fois = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_FOIS)
-        grid_layout.addWidget(self._btn_fois, 3, 3, 1, 1)
+        self.btn_fois = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_FOIS)
+        grid_layout.addWidget(self.btn_fois, 3, 3, 1, 1)
 
-        self._btn_divis = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_DIVIS)
-        grid_layout.addWidget(self._btn_divis, 2, 3, 1, 1)
+        self.btn_divis = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_DIVIS)
+        grid_layout.addWidget(self.btn_divis, 2, 3, 1, 1)
 
-        self._btn_egal = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_EQ)
-        grid_layout.addWidget(self._btn_egal, 6, 3, 1, 1)
+        self.btn_egal = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_EQ)
+        grid_layout.addWidget(self.btn_egal, 6, 3, 1, 1)
 
-        self._btn_c = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_C)
-        grid_layout.addWidget(self._btn_c, 2, 0, 1, 1)
+        self.btn_c = QtWidgets.QPushButton(Calculatrice._BTN_TEXT_C)
+        grid_layout.addWidget(self.btn_c, 2, 0, 1, 1)
 
         for i in range(grid_layout.count()):
             item = grid_layout.itemAt(i).widget()
@@ -68,31 +68,31 @@ class Calculatrice(QtWidgets.QWidget):
                 item.setFixedSize(64, 64)
 
     def _setupConnection(self):
-        self._btn_egal.clicked.connect(self._calculOperation)
-        self._btn_c.clicked.connect(self._supprimerResultat)
+        self.btn_egal.clicked.connect(self._calculOperation)
+        self.btn_c.clicked.connect(self._supprimerResultat)
 
-        for btn in self._btns_nb:
+        for btn in self.btns_nb:
             btn.clicked.connect(partial(self._btnNombrePressed, str(btn.text())))
 
-        self._btn_plus.clicked.connect(partial(self._btnOperationPressed, str(self._btn_plus.text())))
-        self._btn_moins.clicked.connect(partial(self._btnOperationPressed, str(self._btn_moins.text())))
-        self._btn_divis.clicked.connect(partial(self._btnOperationPressed, str(self._btn_divis.text())))
-        self._btn_fois.clicked.connect(partial(self._btnOperationPressed, str(self._btn_fois.text())))
+        self.btn_plus.clicked.connect(partial(self._btnOperationPressed, str(self.btn_plus.text())))
+        self.btn_moins.clicked.connect(partial(self._btnOperationPressed, str(self.btn_moins.text())))
+        self.btn_divis.clicked.connect(partial(self._btnOperationPressed, str(self.btn_divis.text())))
+        self.btn_fois.clicked.connect(partial(self._btnOperationPressed, str(self.btn_fois.text())))
 
     def _btnNombrePressed(self, bouton: str):
         """Fonction activee quand l'utilisateur appuie sur un numero (0-9)"""
 
         # On recupere le texte dans le LineEdit resultat
-        resultat = str(self._le_result.text())
+        resultat = str(self.le_result.text())
 
         if resultat == '0':
             # Si le resultat est egal a 0 on met le nombre du bouton
             # que l'utilisateur a presse dans le LineEdit resultat
-            self._le_result.setText(bouton)
+            self.le_result.setText(bouton)
         else:
             # Si le resultat contient autre chose que zero,
             # On ajoute le texte du bouton a celui dans le LineEdit resultat
-            self._le_result.setText(resultat + bouton)
+            self.le_result.setText(resultat + bouton)
 
     def _btnOperationPressed(self, operation: str):
         """
@@ -101,37 +101,37 @@ class Calculatrice(QtWidgets.QWidget):
         """
 
         # On recupere le texte dans le LineEdit operation
-        operationText = str(self._le_operation.text())
+        operationText = str(self.le_operation.text())
         # On recupere le texte dans le LineEdit resultat
-        resultat = str(self._le_result.text())
+        resultat = str(self.le_result.text())
 
         # On additionne l'operation en cours avec le texte dans le resultat
         # et on ajoute a la fin le signe de l'operation qu'on a choisie
-        self._le_operation.setText(operationText + resultat + operation)
+        self.le_operation.setText(operationText + resultat + operation)
         # On reset le texte du LineEdit resultat
-        self._le_result.setText('0')
+        self.le_result.setText('0')
 
     def _supprimerResultat(self):
         """On reset le texte des deux LineEdit"""
 
-        self._le_result.setText('0')
-        self._le_operation.setText('')
+        self.le_result.setText('0')
+        self.le_operation.setText('')
 
     def _calculOperation(self):
         """On calcule le resultat de l'operation en cours (quand l'utilisateur appuie sur egal)"""
 
         # On recupere le texte dans le LineEdit resultat
-        resultat = str(self._le_result.text())
+        resultat = str(self.le_result.text())
 
         # On ajoute le nombre actuel dans le LineEdit resultat
         # au LineEdit operation
-        self._le_operation.setText(self._le_operation.text() + resultat)
+        self.le_operation.setText(self.le_operation.text() + resultat)
 
         # On evalue le resultat de l'operation
-        resultatOperation = eval(str(self._le_operation.text()))
+        resultatOperation = eval(str(self.le_operation.text()))
 
         # On met le resultat final dans le LineEdit resultat
-        self._le_result.setText(str(resultatOperation))
+        self.le_result.setText(str(resultatOperation))
 
 
 if __name__ == '__main__':
