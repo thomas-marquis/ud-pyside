@@ -20,8 +20,6 @@ class Calculatrice(Ui_form_calculatrice, QtWidgets.QWidget):
     def _custom_setup_ui(self):
         for i in range(self.gridLayout.count()):
             widget = self.gridLayout.itemAt(i).widget()
-            if isinstance(widget, QtWidgets.QPushButton):
-                widget.setStyleSheet('QPushButton:hover {color: rgb(100, 200, 130);}')
             if isinstance(widget, QtWidgets.QPushButton) and widget.text().isdigit():
                 self.btns_nb.append(widget)
 

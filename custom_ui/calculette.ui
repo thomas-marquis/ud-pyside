@@ -53,7 +53,7 @@
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QPushButton" name="btn_c">
+    <widget class="ButtonCutom" name="btn_c">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -69,7 +69,7 @@
     </widget>
    </item>
    <item row="2" column="3">
-    <widget class="QPushButton" name="btn_divis">
+    <widget class="ButtonCutom" name="btn_divis">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -85,7 +85,7 @@
     </widget>
    </item>
    <item row="3" column="0">
-    <widget class="QPushButton" name="btn_7">
+    <widget class="ButtonCutom" name="btn_7">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -101,7 +101,7 @@
     </widget>
    </item>
    <item row="3" column="1">
-    <widget class="QPushButton" name="btn_8">
+    <widget class="ButtonCutom" name="btn_8">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -117,7 +117,7 @@
     </widget>
    </item>
    <item row="3" column="2">
-    <widget class="QPushButton" name="btn_9">
+    <widget class="ButtonCutom" name="btn_9">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -133,7 +133,7 @@
     </widget>
    </item>
    <item row="3" column="3">
-    <widget class="QPushButton" name="btn_fois">
+    <widget class="ButtonCutom" name="btn_fois">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -149,7 +149,7 @@
     </widget>
    </item>
    <item row="4" column="0">
-    <widget class="QPushButton" name="btn_4">
+    <widget class="ButtonCutom" name="btn_4">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -165,7 +165,7 @@
     </widget>
    </item>
    <item row="4" column="1">
-    <widget class="QPushButton" name="btn_5">
+    <widget class="ButtonCutom" name="btn_5">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -181,7 +181,7 @@
     </widget>
    </item>
    <item row="4" column="2">
-    <widget class="QPushButton" name="btn_6">
+    <widget class="ButtonCutom" name="btn_6">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -197,7 +197,7 @@
     </widget>
    </item>
    <item row="4" column="3">
-    <widget class="QPushButton" name="btn_moins">
+    <widget class="ButtonCutom" name="btn_moins">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -213,7 +213,7 @@
     </widget>
    </item>
    <item row="5" column="0">
-    <widget class="QPushButton" name="btn_1">
+    <widget class="ButtonCutom" name="btn_1">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -229,7 +229,7 @@
     </widget>
    </item>
    <item row="5" column="1">
-    <widget class="QPushButton" name="btn_2">
+    <widget class="ButtonCutom" name="btn_2">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -245,7 +245,7 @@
     </widget>
    </item>
    <item row="5" column="2">
-    <widget class="QPushButton" name="btn_3">
+    <widget class="ButtonCutom" name="btn_3">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -261,7 +261,7 @@
     </widget>
    </item>
    <item row="5" column="3">
-    <widget class="QPushButton" name="btn_plus">
+    <widget class="ButtonCutom" name="btn_plus">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -277,7 +277,7 @@
     </widget>
    </item>
    <item row="6" column="1">
-    <widget class="QPushButton" name="btn_0">
+    <widget class="ButtonCutom" name="btn_0">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -293,7 +293,7 @@
     </widget>
    </item>
    <item row="6" column="2">
-    <widget class="QPushButton" name="btn_point">
+    <widget class="ButtonCutom" name="btn_point">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -309,7 +309,7 @@
     </widget>
    </item>
    <item row="6" column="3">
-    <widget class="QPushButton" name="btn_egal">
+    <widget class="ButtonCutom" name="btn_egal">
      <property name="maximumSize">
       <size>
        <width>64</width>
@@ -326,6 +326,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ButtonCutom</class>
+   <extends>QPushButton</extends>
+   <header>custom_ui.button_custom</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
