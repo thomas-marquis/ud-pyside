@@ -1,24 +1,22 @@
-from PySide2 import QtWidgets, QtCore
-from functools import partial
+from PySide2 import QtWidgets, QtGui
+
 
 class MainFrame(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle('Signaux')
+        self.setWindowTitle('Mon application')
 
-        self._layout = QtWidgets.QVBoxLayout(self)
-        button = QtWidgets.QPushButton('Clique ici !')
-        button.clicked.connect(partial(self._on_button_click, 'premier bouton'))
 
-        button_2 = QtWidgets.QPushButton('un autre bouton')
-        button_2.clicked.connect(partial(self._on_button_click, 'deuxième bouton'))
+        self.layout = QtWidgets.QHBoxLayout(self)
 
-        self._layout.addWidget(button)
-        self._layout.addWidget(button_2)
+        self.lw_demo = QtWidgets.QListWidget()
+        self.lw_demo.addItems(['premier', 'deuxième', 'troisième'])
 
-    def _on_button_click(self, text):
-        print(text)
+        QtWidgets.QShortcut(QtGui.QKeySequence('Ctrl+Delete'), self, self.lw_demo.clear)
+        QtWidgets.QShortcut(QtGui.QKeySequence('Esc'), self, self.close)
+
+        self.layout.addWidget(self.lw_demo)
 
 
 if __name__ == '__main__':
