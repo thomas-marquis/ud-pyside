@@ -1,4 +1,4 @@
-from PySide2 import QtWidgets, QtCore
+from PySide2 import QtWidgets, QtGui
 from functools import partial
 
 from custom_ui.calculette import Ui_form_calculatrice
@@ -15,7 +15,44 @@ class Calculatrice(Ui_form_calculatrice, QtWidgets.QWidget):
 
         self.setupUi(self)
         self._custom_setup_ui()
+        self._setup_keyboard_shortcuts()
         self._setupConnection()
+
+    def _setup_keyboard_shortcuts(self):
+        for btn in range(10):
+            QtWidgets.QShortcut(QtGui.QKeySequence(str(btn)), self, partial(self._btnNombrePressed, str(btn)))
+
+        QtWidgets.QShortcut(
+            QtGui.QKeySequence('+'),
+            self,
+            partial(self._btnOperationPressed, str(self.btn_plus.text())))
+        QtWidgets.QShortcut(
+            QtGui.QKeySequence('-'),
+            self,
+            partial(self._btnOperationPressed, str(self.btn_moins.text())))
+        QtWidgets.QShortcut(
+            QtGui.QKeySequence('*'),
+            self,
+            partial(self._btnOperationPressed, str(self.btn_fois.text())))
+        QtWidgets.QShortcut(
+            QtGui.QKeySequence('/'),
+            self,
+            partial(self._btnOperationPressed, str(self.btn_divis.text())))
+
+        QtWidgets.QShortcut(
+            QtGui.QKeySequence('enter'),
+            self,
+            self._calculOperation)
+
+        QtWidgets.QShortcut(
+            QtGui.QKeySequence('del'),
+            self,
+            self._supprimerResultat)
+
+        QtWidgets.QShortcut(
+            QtGui.QKeySequence('esc'),
+            self,
+            self.close)
 
     def _custom_setup_ui(self):
         for i in range(self.gridLayout.count()):
